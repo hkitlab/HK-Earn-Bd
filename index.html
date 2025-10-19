@@ -571,23 +571,23 @@
                 return showAlert("Aapki aaj ki ad dekhne ki seema poori ho gayi hai.");
             }
             
-            if (typeof window.show_9391539 !== 'function') {
+            if (typeof window.show_10061406 !== 'function') {
                 return showAlert("Ad service abhi uplabdh nahi hai. Kripya baad mein prayas karein.");
             }
             
             let adPromise;
             switch(taskType) {
                 case 'interstitial':
-                    adPromise = window.show_9391539();
+                    adPromise = window.show_10061406();
                     break;
                 case 'popup':
-                    adPromise = window.show_9391539('pop');
+                    adPromise = window.show_10061406('pop');
                     break;
                 case 'inApp':
-                    adPromise = window.show_9391539({ type: 'inApp', inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 5, everyPage: false } });
+                    adPromise = window.show_10061406({ type: 'inApp', inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 5, everyPage: false } });
                     break;
                 case 'miniApp':
-                    adPromise = window.show_9391539();
+                    adPromise = window.show_10061406();
                     break;
                 default:
                     return;
@@ -628,4 +628,5 @@
     </script>
 </body>
 </html>
+
 
