@@ -82,18 +82,18 @@
             <div id="home-page" class="p-4 space-y-6 sub-page">
                 <div class="card-bg p-4 rounded-lg flex items-center justify-between">
                     <div>
-                        <p class="text-gray-400 text-sm">Your Balance</p>
+                        <p class="text-gray-400 text-sm">🪙Your Balance</p>
                         <p class="text-3xl font-bold"><span id="coin-balance">0</span> Coins</p>
                     </div>
-                    <button id="home-withdraw-btn" class="bg-white text-black font-semibold px-6 py-2 rounded-lg">Withdraw</button>
+                    <button id="home-withdraw-btn" class="bg-white text-black font-semibold px-6 py-2 rounded-lg">📤Withdraw</button>
                 </div>
                 <section>
                     <div class="flex justify-between items-center">
                         <div>
-                            <h2 class="text-lg font-semibold">🔰Daily  Tasks</h2>
-                            <p class="text-sm text-gray-400 mb-4">✅ tasks to get rewards.</p>
+                            <h2 class="text-lg font-semibold">🔰Daily Tasks</h2>
+                            <p class="text-sm text-gray-400 mb-4">✅Complete tasks to get rewards.</p>
                         </div>
-                        <p class="text-sm text-gray-400">Ads Left: <span id="ads-left-count">...</span></p>
+                        <p class="text-sm text-gray-400">🫧Ads Left: <span id="ads-left-count">...</span></p>
                     </div>
                     <div class="space-y-3">
                         <div class="bg-orange-500 p-3 rounded-lg flex items-center justify-between text-black">
@@ -322,9 +322,9 @@
 
         function updateDynamicPaymentFields() {
             const selectedMethod = withdrawMethodSelect.value.toLowerCase();
-            let placeholder = "Detail Daalein";
-            if (selectedMethod.includes('upi')) placeholder = "Apni UPI ID Daalein";
-            if (selectedMethod.includes('paytm')) placeholder = "Apna Paytm Number Daalein";
+            let placeholder = "Details";
+            if (selectedMethod.includes('bkash')) placeholder = "Wallet Number";
+            if (selectedMethod.includes('nagad')) placeholder = "Wallet Number";
             paymentDetailsContainer.innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="w-full p-3 rounded-lg input-field">`;
         }
 
@@ -484,13 +484,13 @@
                     await updateDoc(newUserRef, { balance: (userData.balance || 0) + 100, referredBy: referrerCode });
                     userData.balance += 100; userData.referredBy = referrerCode;
                     updateUI();
-                    if(isManualApply) showAlert("Code safaltapoorvak apply ho gaya! Aapko 100 coins mile hain.");
+                    if(isManualApply) showAlert("✅Successfully & You get 100 coin");
                 } else {
-                    if(isManualApply) showAlert("Galat referral code.");
+                    if(isManualApply) showAlert("No referral code.");
                 }
             } catch(error) {
                 console.error("Error applying referral bonus: ", error);
-                if(isManualApply) showAlert("Code apply karte samay error aayi.");
+                if(isManualApply) showAlert("❎Error refer code .");
             }
         }
 
@@ -510,10 +510,10 @@
             const paymentDetail = paymentDetailInput ? paymentDetailInput.value.trim() : '';
             const minWithdrawal = appConfig.minWithdrawal || 5000;
 
-            if (!amount || amount <= 0) return showAlert("Kripya valid amount daalein.");
+            if (!amount || amount <= 0) return showAlert("Please write vaild amount.");
             if (amount < minWithdrawal) return showAlert(`Minimum withdrawal ${minWithdrawal} coins hai.`);
             if (amount > userData.balance) return showAlert("Insufficient balance.");
-            if (!paymentDetail) return showAlert("Kripya payment detail daalein (UPI ID ya Paytm Number).");
+            if (!paymentDetail) return showAlert("Payment Details ");
 
             try {
                 await updateBalance(-amount);
@@ -547,13 +547,13 @@
         }
         
         function shareReferralCode() {
-            const text = `CashReward join karein aur paise kamayein! Bonus paane ke liye mera referral code use karein: ${userData.referralCode}`;
+            const text = `Join with HK EARN💰 & gets 100 coins : ${userData.referralCode}`;
             if (navigator.share) {
-                navigator.share({ title: 'CashReward Join Karein!', text: text, url: window.location.href })
+                navigator.share({ title: 'HK EARN💰 Join!', text: text, url: window.location.href })
                     .catch((error) => console.error("Share failed:", error));
             } else {
                 copyReferralCode();
-                showAlert("Share feature available nahi hai. Iske bajaye referral code copy kar diya gaya hai!");
+                showAlert("Share feature not available . So you can applying refer code!");
             }
         }
 
@@ -628,6 +628,7 @@
     </script>
 </body>
 </html>
+
 
 
 
